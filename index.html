@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumiere Beauty Salon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ADMIN TOGGLE -->
+<button id="admin-toggle-btn" type="button" data-action="toggle-admin">⚙ Admin Panel</button>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+    <div class="admin-container">
+        <div class="admin-header">
+            <h2>Admin Panel</h2>
+            <button class="admin-close" type="button" data-action="toggle-admin">✕</button>
+        </div>
+
+        <div class="admin-tabs">
+            <button class="admin-tab active" type="button" data-tab="bookings">📅 Bronlar</button>
+            <button class="admin-tab" type="button" data-tab="services">✂ Xizmatlar</button>
+            <button class="admin-tab" type="button" data-tab="team">👥 Ustalar</button>
+            <button class="admin-tab" type="button" data-tab="gallery">🖼 Galereya</button>
+            <button class="admin-tab" type="button" data-tab="contact">📞 Kontakt</button>
+        </div>
+
+        <!-- BOOKINGS -->
+        <div id="admin-bookings" class="admin-section active">
+            <div class="admin-card">
+                <h3>Kelgan Bronlar</h3>
+                <table class="bookings-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Ism</th>
+                        <th>Telefon</th>
+                        <th>Xizmat</th>
+                        <th>Usta</th>
+                        <th>Sana / Vaqt</th>
+                        <th>Holat</th>
+                        <th>Amal</th>
+                    </tr>
+                    </thead>
+                    <tbody id="bookings-tbody">
+                    <tr>
+                        <td>001</td>
+                        <td>Malika Yusupova</td>
+                        <td>+998 90 123 45 67</td>
+                        <td>Soch boyash</td>
+                        <td>Nodira</td>
+                        <td>18 Apr, 14:00</td>
+                        <td><span class="status-badge status-new">Yangi</span></td>
+                        <td>
+                            <div class="admin-actions">
+                                <button class="btn-edit" type="button" data-action="confirm-booking">✓</button>
+                                <button class="btn-del" type="button" data-action="delete-row">✕</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Zulfiya Karimova</td>
+                        <td>+998 91 234 56 78</td>
+                        <td>Manikür</td>
+                        <td>Dilnoza</td>
+                        <td>19 Apr, 11:00</td>
+                        <td><span class="status-badge status-confirmed">Tasdiqlandi</span></td>
+                        <td>
+                            <div class="admin-actions">
+                                <button class="btn-edit" type="button" data-action="done-booking">✓✓</button>
+                                <button class="btn-del" type="button" data-action="delete-row">✕</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Shahlo Mirzaeva</td>
+                        <td>+998 93 345 67 89</td>
+                        <td>Qashot olish</td>
+                        <td>Muazzam</td>
+                        <td>17 Apr, 16:30</td>
+                        <td><span class="status-badge status-done">Bajarildi</span></td>
+                        <td>
+                            <div class="admin-actions">
+                                <button class="btn-del" type="button" data-action="delete-row">🗑</button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SERVICES ADMIN -->
+        <div id="admin-services" class="admin-section">
+            <div class="admin-card">
+                <h3>Yangi Xizmat Qo'shish</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Xizmat nomi</label>
+                        <input type="text" placeholder="Masalan: Soch kesish" id="srv-name">
+                    </div>
+                    <div class="form-group">
+                        <label>Emoji / Icon</label>
+                        <input type="text" placeholder="✂" id="srv-icon">
+                    </div>
+                    <div class="form-group full">
+                        <label>Tavsif</label>
+                        <textarea placeholder="Xizmat haqida qisqacha..." id="srv-desc"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Narx (boshlanish)</label>
+                        <input type="text" placeholder="50 000 so'm" id="srv-price">
+                    </div>
+                    <div class="form-group">
+                        <label>Premium narx</label>
+                        <input type="text" placeholder="150 000 so'm" id="srv-price2">
+                    </div>
+                </div>
+                <button class="btn-admin" type="button" data-action="add-service">+ Xizmat qo'shish</button>
+            </div>
+            <div class="admin-card">
+                <h3>Mavjud Xizmatlar</h3>
+                <div class="admin-list" id="services-list">
+                    <div class="admin-list-item">
+                        <div>
+                            <span>✂ Soch Kesish</span><br>
+                            <small>Klassik: 80 000 so'm • Premium: 200 000 so'm</small>
+                        </div>
+                        <div class="admin-actions">
+                            <button class="btn-edit">Tahrir</button>
+                            <button class="btn-del" type="button" data-action="delete-row">O'chir</button>
+                        </div>
+                    </div>
+                    <div class="admin-list-item">
+                        <div>
+                            <span>💅 Manikür & Pedikür</span><br>
+                            <small>Oddiy: 60 000 so'm • Gel: 120 000 so'm</small>
+                        </div>
+                        <div class="admin-actions">
+                            <button class="btn-edit">Tahrir</button>
+                            <button class="btn-del" type="button" data-action="delete-row">O'chir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEAM ADMIN -->
+        <div id="admin-team" class="admin-section">
+            <div class="admin-card">
+                <h3>Yangi Usta Qo'shish</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Ism Familiya</label>
+                        <input type="text" placeholder="Nodira Karimova" id="team-name">
+                    </div>
+                    <div class="form-group">
+                        <label>Mutaxassislik</label>
+                        <input type="text" placeholder="Soch ustasi" id="team-role">
+                    </div>
+                    <div class="form-group">
+                        <label>Tajriba (yil)</label>
+                        <input type="number" placeholder="5" id="team-exp">
+                    </div>
+                    <div class="form-group">
+                        <label>Bosh harf (Avatar)</label>
+                        <input type="text" placeholder="N" id="team-initial" maxlength="2">
+                    </div>
+                    <div class="form-group full">
+                        <label>Ixtisoslashuv</label>
+                        <input type="text" placeholder="Soch bo'yash, Korreksiya, Ombré" id="team-spec">
+                    </div>
+                </div>
+                <button class="btn-admin" type="button" data-action="add-team-member">+ Usta qo'shish</button>
+            </div>
+            <div class="admin-card">
+                <h3>Ustalar Ro'yxati</h3>
+                <div class="admin-list" id="team-list">
+                    <div class="admin-list-item">
+                        <div>
+                            <span>Nodira Karimova — Soch ustasi</span><br>
+                            <small>8 yil tajriba • Soch bo'yash, Ombré</small>
+                        </div>
+                        <div class="admin-actions">
+                            <button class="btn-edit">Tahrir</button>
+                            <button class="btn-del" type="button" data-action="delete-row">O'chir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GALLERY ADMIN -->
+        <div id="admin-gallery" class="admin-section">
+            <div class="admin-card">
+                <h3>Rasm URL qo'shish</h3>
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label>Rasm URL manzili</label>
+                        <input type="url" placeholder="https://..." id="gallery-url">
+                    </div>
+                    <div class="form-group">
+                        <label>Sarlavha</label>
+                        <input type="text" placeholder="Soch bo'yash ishlari" id="gallery-title">
+                    </div>
+                    <div class="form-group">
+                        <label>Kategoriya</label>
+                        <select id="gallery-cat" class="admin-select">
+                            <option value="hair">Soch</option>
+                            <option value="nail">Tirnoq</option>
+                            <option value="makeup">Makiyaj</option>
+                            <option value="brow">Qashot</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn-admin" type="button" data-action="add-gallery-item">+ Rasm qo'shish</button>
+                <p class="admin-hint">💡 Maslahat: Rasm yuklash uchun Cloudinary yoki ImgBB kabi xizmatlardan foydalaning</p>
+            </div>
+        </div>
+
+        <!-- CONTACT ADMIN -->
+        <div id="admin-contact" class="admin-section">
+            <div class="admin-card">
+                <h3>Kontakt Ma'lumotlari</h3>
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label>Manzil</label>
+                        <input type="text" value="Toshkent, Chilonzor tumani, Bunyodkor ko'chasi 22" id="contact-address">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon 1</label>
+                        <input type="text" value="+998 90 000 00 00" id="contact-phone1">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon 2</label>
+                        <input type="text" value="+998 91 000 00 00" id="contact-phone2">
+                    </div>
+                    <div class="form-group">
+                        <label>Instagram</label>
+                        <input type="text" value="@lumiere_beauty_uz" id="contact-insta">
+                    </div>
+                    <div class="form-group">
+                        <label>Telegram</label>
+                        <input type="text" value="@lumiere_salon" id="contact-tg">
+                    </div>
+                    <div class="form-group">
+                        <label>Ish vaqti (hafta)</label>
+                        <input type="text" value="Dushanba–Shanba: 9:00 – 20:00" id="work-hours1">
+                    </div>
+                    <div class="form-group">
+                        <label>Ish vaqti (dam olish)</label>
+                        <input type="text" value="Yakshanba: 10:00 – 18:00" id="work-hours2">
+                    </div>
+                </div>
+                <button class="btn-admin" type="button" data-action="save-contact">💾 Saqlash</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+    <a href="#home" class="nav-logo">Lumière <span>•</span></a>
+    <ul class="nav-links">
+        <li><a href="#home">Bosh sahifa</a></li>
+        <li><a href="#services">Xizmatlar</a></li>
+        <li><a href="#team">Ustalar</a></li>
+        <li><a href="#gallery">Galereya</a></li>
+        <li><a href="#contact">Bog'lanish</a></li>
+    </ul>
+    <a href="#booking" class="nav-book">Yozilish</a>
+    <button class="hamburger" type="button" data-action="toggle-menu" aria-expanded="false" aria-label="Menyuni ochish">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-lines"></div>
+
+    <div class="hero-content">
+        <div class="hero-text">
+            <div class="hero-eyebrow">
+                <span>Toshkentdagi Premium Go'zallik Saloni</span>
+            </div>
+            <h1 class="hero-title">
+                O'zingizni
+                <em>eng go'zal</em>
+                his eting
+            </h1>
+            <p class="hero-desc">
+                Lumière — bu faqat go'zallik saloni emas. Bu siz uchun yaratilgan makon.
+                Professional ustalarimiz har bir mijozga individual yondashuv va hashamatli xizmat taqdim etadi.
+            </p>
+            <div class="hero-cta">
+                <a href="#booking" class="btn-primary">Hozir Yoziling</a>
+                <a href="#services" class="btn-outline">Xizmatlar →</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-num">8+</span>
+                    <span class="hero-stat-label">Yil Tajriba</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num">2K+</span>
+                    <span class="hero-stat-label">Mamnun Mijoz</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num">12</span>
+                    <span class="hero-stat-label">Usta</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num">30+</span>
+                    <span class="hero-stat-label">Xizmat Turi</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-img-frame">
+                <div class="hero-placeholder">
+                    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M50 20 C30 20 20 35 20 50 C20 65 30 75 45 78 C40 85 35 88 30 90 L70 90 C65 88 60 85 55 78 C70 75 80 65 80 50 C80 35 70 20 50 20Z"/>
+                        <path d="M35 45 Q50 38 65 45" stroke-linecap="round"/>
+                        <circle cx="40" cy="52" r="3" fill="currentColor" stroke="none"/>
+                        <circle cx="60" cy="52" r="3" fill="currentColor" stroke="none"/>
+                    </svg>
+                    <p>Premium Rasm</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+    <div class="section-header reveal">
+        <div class="section-eyebrow"><span>Bizning Xizmatlar</span></div>
+        <h2 class="section-title">Har bir xizmat — <em>san'at asari</em></h2>
+    </div>
+
+    <div class="services-grid" id="services-grid">
+        <div class="service-card reveal">
+            <div class="service-icon">✂</div>
+            <h3 class="service-name">Soch Kesish & Ukladka</h3>
+            <p class="service-desc">Yuzingizga mos klassik va zamonaviy soch turmak­lari. Har bir kesim individual tahlil asosida amalga oshiriladi.</p>
+            <div class="service-prices">
+                <div class="price-item"><span>Klassik kesish</span><strong>80 000 so'm</strong></div>
+                <div class="price-item"><span>Premium ukladka</span><strong>150 000 so'm</strong></div>
+                <div class="price-item"><span>Kelin soch turmaği</span><strong>400 000 so'm</strong></div>
+            </div>
+        </div>
+
+        <div class="service-card reveal">
+            <div class="service-icon">🎨</div>
+            <h3 class="service-name">Soch Bo'yash</h3>
+            <p class="service-desc">Ombré, balayaj, highlight — zamonaviy bo'yash texnikalari bilan ranglar uyg'unligi yaratiladi. Faqat sertifikatlangan mahsulotlar.</p>
+            <div class="service-prices">
+                <div class="price-item"><span>Bir rang bo'yash</span><strong>120 000 so'm</strong></div>
+                <div class="price-item"><span>Balayaj / Ombré</span><strong>350 000 so'm</strong></div>
+                <div class="price-item"><span>Highlight</span><strong>250 000 so'm</strong></div>
+            </div>
+        </div>
+
+        <div class="service-card reveal">
+            <div class="service-icon">💅</div>
+            <h3 class="service-name">Manikür & Pedikür</h3>
+            <p class="service-desc">Qo'l va oyoq parvarishi — klassik, gel-lak, akril, shellac. Teri parvarishi bilan birga to'liq kompleks xizmat.</p>
+            <div class="service-prices">
+                <div class="price-item"><span>Klassik manikür</span><strong>60 000 so'm</strong></div>
+                <div class="price-item"><span>Gel-lak manikür</span><strong>100 000 so'm</strong></div>
+                <div class="price-item"><span>Spa pedikür</span><strong>130 000 so'm</strong></div>
+            </div>
+        </div>
+
+        <div class="service-card reveal">
+            <div class="service-icon">✨</div>
+            <h3 class="service-name">Qashot & Kiprik</h3>
+            <p class="service-desc">Qashot dizayn, laminatsiya, mikrobleyding. Kiprik uzaytirish, laminatsiya va bo'yash xizmatlari.</p>
+            <div class="service-prices">
+                <div class="price-item"><span>Qashot korreksiyasi</span><strong>50 000 so'm</strong></div>
+                <div class="price-item"><span>Mikrobleyding</span><strong>500 000 so'm</strong></div>
+                <div class="price-item"><span>Kiprik uzaytirish</span><strong>200 000 so'm</strong></div>
+            </div>
+        </div>
+
+        <div class="service-card reveal">
+            <div class="service-icon">💄</div>
+            <h3 class="service-name">Makiyaj</h3>
+            <p class="service-desc">Kundalik, kechki va kelin makiyaji. Professional kosmetika brendlari bilan ishlash tajribasi 8 yildan ortiq.</p>
+            <div class="service-prices">
+                <div class="price-item"><span>Kundalik makiyaj</span><strong>120 000 so'm</strong></div>
+                <div class="price-item"><span>Kechki makiyaj</span><strong>200 000 so'm</strong></div>
+                <div class="price-item"><span>Kelin makiyaji</span><strong>450 000 so'm</strong></div>
+            </div>
+        </div>
+
+        <div class="service-card reveal">
+            <div class="service-icon">🌿</div>
+            <h3 class="service-name">Teri Parvarishi</h3>
+            <p class="service-desc">Yuz va tana masajlari, tozalash, niqoblar. Tibbiy kosmetologiya va professional parvarish muolajalar.</p>
+            <div class="service-prices">
+                <div class="price-item"><span>Yuz tozalash</span><strong>150 000 so'm</strong></div>
+                <div class="price-item"><span>Gidratsiya niqob</span><strong>100 000 so'm</strong></div>
+                <div class="price-item"><span>Kompleks muolaja</span><strong>280 000 so'm</strong></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+    <div class="section-header reveal">
+        <div class="section-eyebrow"><span>Bizning Jamoa</span></div>
+        <h2 class="section-title">Tajribali <em>ustalar</em></h2>
+    </div>
+
+    <div class="team-grid" id="team-grid">
+        <div class="team-card reveal">
+            <div class="team-photo">
+                <div class="team-avatar">N</div>
+                <div class="team-overlay">
+                    <p class="team-name">Nodira Karimova</p>
+                    <p class="team-role">Bosh Soch Ustasi</p>
+                    <div class="team-exp">
+                        <strong>8</strong><span>yil tajriba</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card reveal">
+            <div class="team-photo">
+                <div class="team-avatar">D</div>
+                <div class="team-overlay">
+                    <p class="team-name">Dilnoza Yusupova</p>
+                    <p class="team-role">Manikür Ustasi</p>
+                    <div class="team-exp">
+                        <strong>5</strong><span>yil tajriba</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card reveal">
+            <div class="team-photo">
+                <div class="team-avatar">M</div>
+                <div class="team-overlay">
+                    <p class="team-name">Muazzam Ergasheva</p>
+                    <p class="team-role">Kosmetolog</p>
+                    <div class="team-exp">
+                        <strong>6</strong><span>yil tajriba</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-card reveal">
+            <div class="team-photo">
+                <div class="team-avatar">Z</div>
+                <div class="team-overlay">
+                    <p class="team-name">Zulfiya Mirzaeva</p>
+                    <p class="team-role">Makiyaj Ustasi</p>
+                    <div class="team-exp">
+                        <strong>7</strong><span>yil tajriba</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+    <div class="section-header reveal">
+        <div class="section-eyebrow"><span>Bizning Ishlar</span></div>
+        <h2 class="section-title">Galereya — <em>natijalar gapiradi</em></h2>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+        <div class="gallery-item reveal">
+            <div class="gallery-placeholder">
+                <span>✨</span>
+                <p>Balayaj ishlari</p>
+            </div>
+            <div class="gallery-hover">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="gallery-placeholder">
+                <span>💅</span>
+                <p>Manikür</p>
+            </div>
+            <div class="gallery-hover">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="gallery-placeholder">
+                <span>💄</span>
+                <p>Kelin makiyaji</p>
+            </div>
+            <div class="gallery-hover">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="gallery-placeholder">
+                <span>✂</span>
+                <p>Soch turmak</p>
+            </div>
+            <div class="gallery-hover">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="gallery-placeholder">
+                <span>🌿</span>
+                <p>Teri parvarishi</p>
+            </div>
+            <div class="gallery-hover">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="gallery-placeholder">
+                <span>✨</span>
+                <p>Qashot dizayn</p>
+            </div>
+            <div class="gallery-hover">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="gallery-placeholder">
+                <span>💇</span>
+                <p>Ombré rang</p>
+            </div>
+            <div class="gallery-hover">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+    <div class="section-header reveal">
+        <div class="section-eyebrow"><span>Online Yozilish</span></div>
+        <h2 class="section-title">Qulay vaqtingizni <em>belgilang</em></h2>
+    </div>
+
+    <div class="booking-container">
+        <div class="booking-info reveal">
+            <h3>Bron qilish oson va tez</h3>
+            <p>Quyidagi forma orqali siz uchun qulay vaqtni tanlang. Bizning administrator siz bilan 30 daqiqa ichida bog'lanadi va bronni tasdiqlaydi.</p>
+
+            <div class="booking-features">
+                <div class="booking-feature">
+                    <div class="booking-feature-icon"></div>
+                    <div class="booking-feature-text">
+                        <strong>Tez Tasdiqlash</strong>
+                        <span>30 daqiqa ichida tasdiqlash xabari</span>
+                    </div>
+                </div>
+                <div class="booking-feature">
+                    <div class="booking-feature-icon">🔄</div>
+                    <div class="booking-feature-text">
+                        <strong>Bepul Bekor Qilish</strong>
+                        <span>24 soat oldin bepul bekor qilish imkoni</span>
+                    </div>
+                </div>
+                <div class="booking-feature">
+                    <div class="booking-feature-icon">👑</div>
+                    <div class="booking-feature-text">
+                        <strong>Usta Tanlash</strong>
+                        <span>O'zingizga yoqqan ustani tanlang</span>
+                    </div>
+                </div>
+                <div class="booking-feature">
+                    <div class="booking-feature-icon">📱</div>
+                    <div class="booking-feature-text">
+                        <strong>Eslatma Xizmati</strong>
+                        <span>Qabul oldidan SMS eslatma yuboriladi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="booking-form reveal">
+            <h4>Bron Formasi</h4>
+            <div class="public-form-group">
+                <label>Ism Familiya *</label>
+                <input type="text" placeholder="Ismoilova Malika" id="book-name">
+            </div>
+            <div class="public-form-group">
+                <label>Telefon raqami *</label>
+                <input type="tel" placeholder="+998 90 000 00 00" id="book-phone">
+            </div>
+            <div class="public-form-group">
+                <label>Xizmat turi *</label>
+                <select id="book-service">
+                    <option value="">— Tanlang —</option>
+                    <option>Soch Kesish & Ukladka</option>
+                    <option>Soch Bo'yash (Balayaj/Ombré)</option>
+                    <option>Manikür & Pedikür</option>
+                    <option>Qashot & Kiprik</option>
+                    <option>Makiyaj</option>
+                    <option>Teri Parvarishi</option>
+                    <option>Kelin Paketi (To'liq)</option>
+                </select>
+            </div>
+            <div class="public-form-group">
+                <label for="book-master">Usta tanlash</label>
+                <select id="book-master">
+                    <option value="">— Farqi yo'q —</option>
+                    <option>Nodira Karimova</option>
+                    <option>Dilnoza Yusupova</option>
+                    <option>Muazzam Ergasheva</option>
+                    <option>Zulfiya Mirzaeva</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="public-form-group">
+                    <label for="book-date">Sana *</label>
+                    <input type="date" id="book-date">
+                </div>
+                <div class="public-form-group">
+                    <label for="book-time">Vaqt *</label>
+                    <select id="book-time">
+                        <option>09:00</option><option>10:00</option><option>11:00</option>
+                        <option>12:00</option><option>13:00</option><option>14:00</option>
+                        <option>15:00</option><option>16:00</option><option>17:00</option>
+                        <option>18:00</option><option>19:00</option>
+                    </select>
+                </div>
+            </div>
+            <button class="submit-btn" type="button" data-action="submit-booking">
+                <span>✦ Yozilishni Tasdiqlash</span>
+            </button>
+            <div class="success-msg" id="success-msg">
+                <p>✓ Broningiz qabul qilindi! Tez orada siz bilan bog'lanamiz.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="section-header reveal">
+        <div class="section-eyebrow"><span>Manzil & Aloqa</span></div>
+        <h2 class="section-title">Biz bilan <em>bog'laning</em></h2>
+    </div>
+
+    <div class="contact-grid">
+        <div class="contact-card reveal">
+            <div class="contact-icon"></div>
+            <p class="contact-label">Manzil</p>
+            <p class="contact-value">Toshkent, Chilonzor<br>Bunyodkor ko'chasi, 22</p>
+        </div>
+
+        <div class="contact-card reveal">
+            <div class="contact-icon">📞</div>
+            <p class="contact-label">Telefon</p>
+            <p class="contact-value">+998 90 000 00 00<br>+998 91 000 00 00</p>
+        </div>
+
+        <div class="contact-card reveal">
+            <div class="contact-icon"></div>
+            <p class="contact-label">Ish Vaqti</p>
+            <p class="contact-value">Du–Sha: 9:00–20:00<br>Yakshanba: 10:00–18:00</p>
+        </div>
+
+        <div class="contact-card reveal">
+            <div class="contact-icon">📸</div>
+            <p class="contact-label">Instagram</p>
+            <p class="contact-value">@lumiere_beauty_uz</p>
+        </div>
+
+        <div class="contact-card reveal">
+            <div class="contact-icon">✈</div>
+            <p class="contact-label">Telegram</p>
+            <p class="contact-value">@lumiere_salon</p>
+        </div>
+
+        <div class="contact-card reveal">
+            <div class="contact-icon">💌</div>
+            <p class="contact-label">Email</p>
+            <p class="contact-value">info@lumiere.uz</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">Lumière <span>•</span></div>
+    <p class="footer-tagline">Nafosatning in'ikosi</p>
+    <p class="footer-copy">© 2024 Lumière Beauty Salon. Barcha huquqlar himoyalangan.</p>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
+
