@@ -32,7 +32,7 @@ Example local run workflow:
 
 ```bash
 # open project root
-cd /path/to/classmate-s-project
+cd /path/to/lumiere-salon-project
 
 # serve static files with any simple web server
 python -m http.server 8080
